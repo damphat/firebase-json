@@ -1,0 +1,20 @@
+{
+  "name": "firebase-json",
+  "displayName": "Firebase configuration - firebase.json",
+  "description": "Adds json schema for firebase.json files, enabling auto completion and suggestion",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.63.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "contributes": {
+    "jsonValidation": [
+      {
+        "fileMatch": "firebase.json",
+        "url": "./schemas/firebase-config.json"
+      }
+    ]
+  }
+}
