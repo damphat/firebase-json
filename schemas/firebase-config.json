@@ -8,17 +8,6 @@
     }
   },
   "properties": {
-    "users": {
-      "anyOf": [
-        {
-          "additionalProperties": false,
-          "properties": {
-            "name": { "type": "string" },
-            "age": { "type": "number" }
-          }
-        }
-      ]
-    },
     "database": {
       "anyOf": [
         {
