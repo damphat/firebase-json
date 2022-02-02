@@ -9,6 +9,7 @@
   },
   "author": "Phat <damphat@gmail.com>",
   "license": "MIT",
+  "publisher": "damphat",
   "engines": {
     "vscode": "^1.50.0"
   },
