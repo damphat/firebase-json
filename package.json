@@ -1,10 +1,16 @@
 {
   "name": "firebase-json",
-  "displayName": "Firebase configuration - firebase.json",
+  "displayName": "Firebase configuration autocompleted",
   "description": "Adds json schema for firebase.json files, enabling auto completion and suggestion",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/damphat/firebase-json.git"
+  },
+  "author": "Phat <damphat@gmail.com>",
+  "license": "MIT",
   "engines": {
-    "vscode": "^1.63.0"
+    "vscode": "^1.50.0"
   },
   "categories": [
     "Other"

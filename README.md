@@ -1,7 +1,7 @@
 # firebase-json
 
-A **vscode extension** allows writting **firebase configuration** with with auto completion.
+A **vscode extension** allows writting **firebase configuration** with autocomplete feature.
 
-### Edit `firebase.json` with auto completion:
+### Write `firebase.json` with auto completion:
 
-![autocompletion](demo.gif)
+![autocompletion](./docs/demo.gif)
