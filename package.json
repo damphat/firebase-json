@@ -2,7 +2,7 @@
   "name": "firebase-json",
   "displayName": "Firebase configuration autocompleted",
   "description": "Adds json schema for firebase.json files, enabling auto completion and suggestion",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/damphat/firebase-json.git"
@@ -12,6 +12,10 @@
   "publisher": "damphat",
   "engines": {
     "vscode": "^1.50.0"
+  },
+  "scripts": {
+    "generate": "typescript-json-schema --strictNullChecks --required --noExtraProps src/firebaseConfig.ts FirebaseConfig > schemas/firebase-config.json",
+    "package": "yarn run generate && vsce package"
   },
   "categories": [
     "Other"
@@ -23,5 +27,8 @@
         "url": "./schemas/firebase-config.json"
       }
     ]
+  },
+  "devDependencies": {
+    "typescript-json-schema": "^0.53.0"
   }
 }

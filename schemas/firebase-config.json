@@ -1,1693 +1,2132 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "additionalProperties": false,
-  "definitions": {
-    "ExtensionsConfig": {
-      "additionalProperties": false,
-      "type": "object"
-    }
-  },
-  "properties": {
-    "database": {
-      "anyOf": [
-        {
-          "additionalProperties": false,
-          "properties": {
-            "postdeploy": {
-              "anyOf": [
-                {
-                  "items": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                },
-                {
-                  "type": "string"
-                }
-              ]
-            },
-            "predeploy": {
-              "anyOf": [
-                {
-                  "items": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                },
-                {
-                  "type": "string"
-                }
-              ]
-            },
-            "rules": {
-              "type": "string"
-            }
-          },
-          "required": ["rules"],
-          "type": "object"
-        },
-        {
-          "items": {
-            "anyOf": [
-              {
-                "additionalProperties": false,
-                "properties": {
-                  "instance": {
-                    "type": "string"
-                  },
-                  "postdeploy": {
-                    "anyOf": [
-                      {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
-                      {
-                        "type": "string"
-                      }
-                    ]
-                  },
-                  "predeploy": {
-                    "anyOf": [
-                      {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
-                      {
-                        "type": "string"
-                      }
-                    ]
-                  },
-                  "rules": {
-                    "type": "string"
-                  },
-                  "target": {
-                    "type": "string"
-                  }
-                },
-                "required": ["instance", "rules"],
-                "type": "object"
-              },
-              {
-                "additionalProperties": false,
-                "properties": {
-                  "instance": {
-                    "type": "string"
-                  },
-                  "postdeploy": {
-                    "anyOf": [
-                      {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
-                      {
-                        "type": "string"
-                      }
-                    ]
-                  },
-                  "predeploy": {
-                    "anyOf": [
-                      {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
-                      {
-                        "type": "string"
-                      }
-                    ]
-                  },
-                  "rules": {
-                    "type": "string"
-                  },
-                  "target": {
-                    "type": "string"
-                  }
-                },
-                "required": ["rules", "target"],
-                "type": "object"
-              }
-            ]
-          },
-          "type": "array"
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "definitions": {
+        "ExtensionsConfig": {
+            "additionalProperties": false,
+            "type": "object"
         }
-      ]
     },
-    "emulators": {
-      "additionalProperties": false,
-      "properties": {
-        "auth": {
-          "additionalProperties": false,
-          "properties": {
-            "host": {
-              "type": "string"
-            },
-            "port": {
-              "type": "number"
-            }
-          },
-          "type": "object"
-        },
+    "properties": {
         "database": {
-          "additionalProperties": false,
-          "properties": {
-            "host": {
-              "type": "string"
+            "anyOf": [
+                {
+                    "additionalProperties": false,
+                    "properties": {
+                        "postdeploy": {
+                            "anyOf": [
+                                {
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ],
+                            "description": "Post-deploy lifecycle hook will only execute if pre-deploy and function deployment completed successfully."
+                        },
+                        "predeploy": {
+                            "anyOf": [
+                                {
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ],
+                            "description": "Pre-deploy lifecycle hook - commands in the string array are sequentially executed. If any one of them fails the function will not deploy and the postdeploy lifecycle hook will not run."
+                        },
+                        "rules": {
+                            "description": "Points to the file that contains security rules for your Realtime Database.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "rules"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "instance": {
+                                        "type": "string"
+                                    },
+                                    "postdeploy": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "description": "Post-deploy lifecycle hook will only execute if pre-deploy and function deployment completed successfully."
+                                    },
+                                    "predeploy": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "description": "Pre-deploy lifecycle hook - commands in the string array are sequentially executed. If any one of them fails the function will not deploy and the postdeploy lifecycle hook will not run."
+                                    },
+                                    "rules": {
+                                        "description": "Points to the file that contains Realtime Database security rules",
+                                        "type": "string"
+                                    },
+                                    "target": {
+                                        "description": "Define a database target name to which you apply your security rules file",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "instance",
+                                    "rules"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "instance": {
+                                        "type": "string"
+                                    },
+                                    "postdeploy": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "description": "Post-deploy lifecycle hook will only execute if pre-deploy and function deployment completed successfully."
+                                    },
+                                    "predeploy": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "description": "Pre-deploy lifecycle hook - commands in the string array are sequentially executed. If any one of them fails the function will not deploy and the postdeploy lifecycle hook will not run."
+                                    },
+                                    "rules": {
+                                        "description": "Points to the file that contains Realtime Database security rules",
+                                        "type": "string"
+                                    },
+                                    "target": {
+                                        "description": "Define a database target name to which you apply your security rules file",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "rules",
+                                    "target"
+                                ],
+                                "type": "object"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                }
+            ],
+            "description": "Realtime Database configuration - Define either one database rules set or multiple targets each with its own unique rules file that contains the security rules for the corresponding realtime database."
+        },
+        "emulators": {
+            "additionalProperties": false,
+            "description": "Optional emulator configuration. Default values are used if absent.",
+            "properties": {
+                "auth": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "host": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "database": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "host": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "firestore": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "host": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "functions": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "host": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "hosting": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "host": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "hub": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "host": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "logging": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "host": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "pubsub": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "host": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "storage": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "host": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "ui": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "description": "Default is `true`",
+                            "type": "boolean"
+                        },
+                        "host": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": [
+                                "string",
+                                "number"
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
             },
-            "port": {
-              "type": "number"
-            }
-          },
-          "type": "object"
+            "type": "object"
+        },
+        "extensions": {
+            "$ref": "#/definitions/ExtensionsConfig"
         },
         "firestore": {
-          "additionalProperties": false,
-          "properties": {
-            "host": {
-              "type": "string"
+            "additionalProperties": false,
+            "description": "Firestore configuration - define the Firestore security rules file to be deployed and also define Firestore indexes",
+            "properties": {
+                "indexes": {
+                    "description": "Points to the file that defines indexes for Firestore",
+                    "type": "string"
+                },
+                "postdeploy": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Post-deploy lifecycle hook will only execute if pre-deploy and function deployment completed successfully."
+                },
+                "predeploy": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Pre-deploy lifecycle hook - commands in the string array are sequentially executed. If any one of them fails the function will not deploy and the postdeploy lifecycle hook will not run."
+                },
+                "rules": {
+                    "description": "Points to the file that contains security rules for Firestore",
+                    "type": "string"
+                }
             },
-            "port": {
-              "type": "number"
-            }
-          },
-          "type": "object"
+            "type": "object"
         },
         "functions": {
-          "additionalProperties": false,
-          "properties": {
-            "host": {
-              "type": "string"
+            "additionalProperties": false,
+            "description": "You can define pre-deploy and post-deploy scripts in your functions configuration in firebase.json",
+            "properties": {
+                "ignore": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "postdeploy": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Post-deploy lifecycle hook will only execute if pre-deploy and function deployment completed successfully."
+                },
+                "predeploy": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Pre-deploy lifecycle hook - commands in the string array are sequentially executed. If any one of them fails the function will not deploy and the postdeploy lifecycle hook will not run."
+                },
+                "runtime": {
+                    "enum": [
+                        "nodejs10",
+                        "nodejs12",
+                        "nodejs14",
+                        "nodejs16"
+                    ],
+                    "type": "string"
+                },
+                "source": {
+                    "description": "Point to the functions folder, default to \"functions\"",
+                    "type": "string"
+                }
             },
-            "port": {
-              "type": "number"
-            }
-          },
-          "type": "object"
+            "type": "object"
         },
         "hosting": {
-          "additionalProperties": false,
-          "properties": {
-            "host": {
-              "type": "string"
-            },
-            "port": {
-              "type": "number"
-            }
-          },
-          "type": "object"
+            "anyOf": [
+                {
+                    "additionalProperties": false,
+                    "properties": {
+                        "appAssociation": {
+                            "description": "the default for appAssociation is AUTO.\nBy setting this attribute to AUTO, Hosting can dynamically generate assetlinks.json and apple-app-site-association files when they're requested.",
+                            "type": "string"
+                        },
+                        "cleanUrls": {
+                            "description": "If true, firebase will drop all .html extensions from file uploads",
+                            "type": "boolean"
+                        },
+                        "headers": {
+                            "description": "An array of custom header definitions",
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "glob": {
+                                                "type": "string"
+                                            },
+                                            "headers": {
+                                                "items": {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "key": {
+                                                            "description": "The header key",
+                                                            "type": "string"
+                                                        },
+                                                        "value": {
+                                                            "description": "The header value",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "key",
+                                                        "value"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "required": [
+                                            "glob",
+                                            "headers"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "headers": {
+                                                "items": {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "key": {
+                                                            "description": "The header key",
+                                                            "type": "string"
+                                                        },
+                                                        "value": {
+                                                            "description": "The header value",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "key",
+                                                        "value"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "source": {
+                                                "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "headers",
+                                            "source"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "headers": {
+                                                "items": {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "key": {
+                                                            "description": "The header key",
+                                                            "type": "string"
+                                                        },
+                                                        "value": {
+                                                            "description": "The header value",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "key",
+                                                        "value"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "regex": {
+                                                "description": "RE2 regular expression",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "headers",
+                                            "regex"
+                                        ],
+                                        "type": "object"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        "i18n": {
+                            "additionalProperties": false,
+                            "description": "Set up i18n rewrites",
+                            "properties": {
+                                "root": {
+                                    "description": "Directory that contains your \"i18n content\"",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "root"
+                            ],
+                            "type": "object"
+                        },
+                        "ignore": {
+                            "description": "Specifies files to ignore on deploy",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "postdeploy": {
+                            "anyOf": [
+                                {
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ],
+                            "description": "Post-deploy lifecycle hook will only execute if pre-deploy and function deployment completed successfully."
+                        },
+                        "predeploy": {
+                            "anyOf": [
+                                {
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ],
+                            "description": "Pre-deploy lifecycle hook - commands in the string array are sequentially executed. If any one of them fails the function will not deploy and the postdeploy lifecycle hook will not run."
+                        },
+                        "public": {
+                            "description": "The directory that gets uploaded to Firebase",
+                            "type": "string"
+                        },
+                        "redirects": {
+                            "description": "Specifies all http redirects",
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "destination": {
+                                                "description": "The value used within the Location header entry",
+                                                "type": "string"
+                                            },
+                                            "glob": {
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "description": "The redirect status code\n301 | 302;",
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "destination",
+                                            "glob"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "destination": {
+                                                "description": "The value used within the Location header entry",
+                                                "type": "string"
+                                            },
+                                            "source": {
+                                                "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "description": "The redirect status code\n301 | 302;",
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "destination",
+                                            "source"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "destination": {
+                                                "description": "The value used within the Location header entry",
+                                                "type": "string"
+                                            },
+                                            "regex": {
+                                                "description": "RE2 regular expression",
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "description": "The redirect status code\n301 | 302;",
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "destination",
+                                            "regex"
+                                        ],
+                                        "type": "object"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        "rewrites": {
+                            "description": "Holds rules for rewrites",
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "destination": {
+                                                "description": "A local destination",
+                                                "type": "string"
+                                            },
+                                            "glob": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "destination",
+                                            "glob"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "function": {
+                                                "description": "Directs a request to Cloud Functions",
+                                                "type": "string"
+                                            },
+                                            "glob": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "function",
+                                            "glob"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "glob": {
+                                                "type": "string"
+                                            },
+                                            "run": {
+                                                "additionalProperties": false,
+                                                "description": "Directs a request to a Cloud Run containerized app",
+                                                "properties": {
+                                                    "region": {
+                                                        "description": "optional (if omitted, default is us-central1)",
+                                                        "type": "string"
+                                                    },
+                                                    "serviceId": {
+                                                        "description": "\"service name\" (from when you deployed the container image)",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "serviceId"
+                                                ],
+                                                "type": "object"
+                                            }
+                                        },
+                                        "required": [
+                                            "glob",
+                                            "run"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "dynamicLinks": {
+                                                "description": "Enable Dynamic Links",
+                                                "type": "boolean"
+                                            },
+                                            "glob": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "dynamicLinks",
+                                            "glob"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "destination": {
+                                                "description": "A local destination",
+                                                "type": "string"
+                                            },
+                                            "source": {
+                                                "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "destination",
+                                            "source"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "function": {
+                                                "description": "Directs a request to Cloud Functions",
+                                                "type": "string"
+                                            },
+                                            "source": {
+                                                "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "function",
+                                            "source"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "run": {
+                                                "additionalProperties": false,
+                                                "description": "Directs a request to a Cloud Run containerized app",
+                                                "properties": {
+                                                    "region": {
+                                                        "description": "optional (if omitted, default is us-central1)",
+                                                        "type": "string"
+                                                    },
+                                                    "serviceId": {
+                                                        "description": "\"service name\" (from when you deployed the container image)",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "serviceId"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "source": {
+                                                "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "run",
+                                            "source"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "dynamicLinks": {
+                                                "description": "Enable Dynamic Links",
+                                                "type": "boolean"
+                                            },
+                                            "source": {
+                                                "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "dynamicLinks",
+                                            "source"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "destination": {
+                                                "description": "A local destination",
+                                                "type": "string"
+                                            },
+                                            "regex": {
+                                                "description": "RE2 regular expression",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "destination",
+                                            "regex"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "function": {
+                                                "description": "Directs a request to Cloud Functions",
+                                                "type": "string"
+                                            },
+                                            "regex": {
+                                                "description": "RE2 regular expression",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "function",
+                                            "regex"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "regex": {
+                                                "description": "RE2 regular expression",
+                                                "type": "string"
+                                            },
+                                            "run": {
+                                                "additionalProperties": false,
+                                                "description": "Directs a request to a Cloud Run containerized app",
+                                                "properties": {
+                                                    "region": {
+                                                        "description": "optional (if omitted, default is us-central1)",
+                                                        "type": "string"
+                                                    },
+                                                    "serviceId": {
+                                                        "description": "\"service name\" (from when you deployed the container image)",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "serviceId"
+                                                ],
+                                                "type": "object"
+                                            }
+                                        },
+                                        "required": [
+                                            "regex",
+                                            "run"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "dynamicLinks": {
+                                                "description": "Enable Dynamic Links",
+                                                "type": "boolean"
+                                            },
+                                            "regex": {
+                                                "description": "RE2 regular expression",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "dynamicLinks",
+                                            "regex"
+                                        ],
+                                        "type": "object"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        "site": {
+                            "type": "string"
+                        },
+                        "target": {
+                            "description": "Deploy targets are short-name identifiers (that you define yourself) for Firebase resources in your Firebase project, like a Hosting site with unique static assets or a group of Realtime Database instances that share the same security rules.\nSee: https://firebase.google.com/docs/cli/targets\n\nTo create a deploy target and apply a target-name to a Hosting site, run the following CLI command:\nfirebase target:apply type target-name resource-name",
+                            "type": "string"
+                        },
+                        "trailingSlash": {
+                            "description": "Controls whether URLs should have trailing slashes or not",
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "appAssociation": {
+                                        "description": "the default for appAssociation is AUTO.\nBy setting this attribute to AUTO, Hosting can dynamically generate assetlinks.json and apple-app-site-association files when they're requested.",
+                                        "type": "string"
+                                    },
+                                    "cleanUrls": {
+                                        "description": "If true, firebase will drop all .html extensions from file uploads",
+                                        "type": "boolean"
+                                    },
+                                    "headers": {
+                                        "description": "An array of custom header definitions",
+                                        "items": {
+                                            "anyOf": [
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "glob": {
+                                                            "type": "string"
+                                                        },
+                                                        "headers": {
+                                                            "items": {
+                                                                "additionalProperties": false,
+                                                                "properties": {
+                                                                    "key": {
+                                                                        "description": "The header key",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "value": {
+                                                                        "description": "The header value",
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "key",
+                                                                    "value"
+                                                                ],
+                                                                "type": "object"
+                                                            },
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "glob",
+                                                        "headers"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "headers": {
+                                                            "items": {
+                                                                "additionalProperties": false,
+                                                                "properties": {
+                                                                    "key": {
+                                                                        "description": "The header key",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "value": {
+                                                                        "description": "The header value",
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "key",
+                                                                    "value"
+                                                                ],
+                                                                "type": "object"
+                                                            },
+                                                            "type": "array"
+                                                        },
+                                                        "source": {
+                                                            "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "headers",
+                                                        "source"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "headers": {
+                                                            "items": {
+                                                                "additionalProperties": false,
+                                                                "properties": {
+                                                                    "key": {
+                                                                        "description": "The header key",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "value": {
+                                                                        "description": "The header value",
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "key",
+                                                                    "value"
+                                                                ],
+                                                                "type": "object"
+                                                            },
+                                                            "type": "array"
+                                                        },
+                                                        "regex": {
+                                                            "description": "RE2 regular expression",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "headers",
+                                                        "regex"
+                                                    ],
+                                                    "type": "object"
+                                                }
+                                            ]
+                                        },
+                                        "type": "array"
+                                    },
+                                    "i18n": {
+                                        "additionalProperties": false,
+                                        "description": "Set up i18n rewrites",
+                                        "properties": {
+                                            "root": {
+                                                "description": "Directory that contains your \"i18n content\"",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "root"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "ignore": {
+                                        "description": "Specifies files to ignore on deploy",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "postdeploy": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "description": "Post-deploy lifecycle hook will only execute if pre-deploy and function deployment completed successfully."
+                                    },
+                                    "predeploy": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "description": "Pre-deploy lifecycle hook - commands in the string array are sequentially executed. If any one of them fails the function will not deploy and the postdeploy lifecycle hook will not run."
+                                    },
+                                    "public": {
+                                        "description": "The directory that gets uploaded to Firebase",
+                                        "type": "string"
+                                    },
+                                    "redirects": {
+                                        "description": "Specifies all http redirects",
+                                        "items": {
+                                            "anyOf": [
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "destination": {
+                                                            "description": "The value used within the Location header entry",
+                                                            "type": "string"
+                                                        },
+                                                        "glob": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "description": "The redirect status code\n301 | 302;",
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "destination",
+                                                        "glob"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "destination": {
+                                                            "description": "The value used within the Location header entry",
+                                                            "type": "string"
+                                                        },
+                                                        "source": {
+                                                            "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "description": "The redirect status code\n301 | 302;",
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "destination",
+                                                        "source"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "destination": {
+                                                            "description": "The value used within the Location header entry",
+                                                            "type": "string"
+                                                        },
+                                                        "regex": {
+                                                            "description": "RE2 regular expression",
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "description": "The redirect status code\n301 | 302;",
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "destination",
+                                                        "regex"
+                                                    ],
+                                                    "type": "object"
+                                                }
+                                            ]
+                                        },
+                                        "type": "array"
+                                    },
+                                    "rewrites": {
+                                        "description": "Holds rules for rewrites",
+                                        "items": {
+                                            "anyOf": [
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "destination": {
+                                                            "description": "A local destination",
+                                                            "type": "string"
+                                                        },
+                                                        "glob": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "destination",
+                                                        "glob"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "function": {
+                                                            "description": "Directs a request to Cloud Functions",
+                                                            "type": "string"
+                                                        },
+                                                        "glob": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "function",
+                                                        "glob"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "glob": {
+                                                            "type": "string"
+                                                        },
+                                                        "run": {
+                                                            "additionalProperties": false,
+                                                            "description": "Directs a request to a Cloud Run containerized app",
+                                                            "properties": {
+                                                                "region": {
+                                                                    "description": "optional (if omitted, default is us-central1)",
+                                                                    "type": "string"
+                                                                },
+                                                                "serviceId": {
+                                                                    "description": "\"service name\" (from when you deployed the container image)",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "serviceId"
+                                                            ],
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "glob",
+                                                        "run"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "dynamicLinks": {
+                                                            "description": "Enable Dynamic Links",
+                                                            "type": "boolean"
+                                                        },
+                                                        "glob": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "dynamicLinks",
+                                                        "glob"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "destination": {
+                                                            "description": "A local destination",
+                                                            "type": "string"
+                                                        },
+                                                        "source": {
+                                                            "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "destination",
+                                                        "source"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "function": {
+                                                            "description": "Directs a request to Cloud Functions",
+                                                            "type": "string"
+                                                        },
+                                                        "source": {
+                                                            "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "function",
+                                                        "source"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "run": {
+                                                            "additionalProperties": false,
+                                                            "description": "Directs a request to a Cloud Run containerized app",
+                                                            "properties": {
+                                                                "region": {
+                                                                    "description": "optional (if omitted, default is us-central1)",
+                                                                    "type": "string"
+                                                                },
+                                                                "serviceId": {
+                                                                    "description": "\"service name\" (from when you deployed the container image)",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "serviceId"
+                                                            ],
+                                                            "type": "object"
+                                                        },
+                                                        "source": {
+                                                            "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "run",
+                                                        "source"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "dynamicLinks": {
+                                                            "description": "Enable Dynamic Links",
+                                                            "type": "boolean"
+                                                        },
+                                                        "source": {
+                                                            "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "dynamicLinks",
+                                                        "source"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "destination": {
+                                                            "description": "A local destination",
+                                                            "type": "string"
+                                                        },
+                                                        "regex": {
+                                                            "description": "RE2 regular expression",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "destination",
+                                                        "regex"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "function": {
+                                                            "description": "Directs a request to Cloud Functions",
+                                                            "type": "string"
+                                                        },
+                                                        "regex": {
+                                                            "description": "RE2 regular expression",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "function",
+                                                        "regex"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "regex": {
+                                                            "description": "RE2 regular expression",
+                                                            "type": "string"
+                                                        },
+                                                        "run": {
+                                                            "additionalProperties": false,
+                                                            "description": "Directs a request to a Cloud Run containerized app",
+                                                            "properties": {
+                                                                "region": {
+                                                                    "description": "optional (if omitted, default is us-central1)",
+                                                                    "type": "string"
+                                                                },
+                                                                "serviceId": {
+                                                                    "description": "\"service name\" (from when you deployed the container image)",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "serviceId"
+                                                            ],
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "regex",
+                                                        "run"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "dynamicLinks": {
+                                                            "description": "Enable Dynamic Links",
+                                                            "type": "boolean"
+                                                        },
+                                                        "regex": {
+                                                            "description": "RE2 regular expression",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "dynamicLinks",
+                                                        "regex"
+                                                    ],
+                                                    "type": "object"
+                                                }
+                                            ]
+                                        },
+                                        "type": "array"
+                                    },
+                                    "site": {
+                                        "type": "string"
+                                    },
+                                    "target": {
+                                        "type": "string"
+                                    },
+                                    "trailingSlash": {
+                                        "description": "Controls whether URLs should have trailing slashes or not",
+                                        "type": "boolean"
+                                    }
+                                },
+                                "required": [
+                                    "target"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "appAssociation": {
+                                        "description": "the default for appAssociation is AUTO.\nBy setting this attribute to AUTO, Hosting can dynamically generate assetlinks.json and apple-app-site-association files when they're requested.",
+                                        "type": "string"
+                                    },
+                                    "cleanUrls": {
+                                        "description": "If true, firebase will drop all .html extensions from file uploads",
+                                        "type": "boolean"
+                                    },
+                                    "headers": {
+                                        "description": "An array of custom header definitions",
+                                        "items": {
+                                            "anyOf": [
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "glob": {
+                                                            "type": "string"
+                                                        },
+                                                        "headers": {
+                                                            "items": {
+                                                                "additionalProperties": false,
+                                                                "properties": {
+                                                                    "key": {
+                                                                        "description": "The header key",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "value": {
+                                                                        "description": "The header value",
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "key",
+                                                                    "value"
+                                                                ],
+                                                                "type": "object"
+                                                            },
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "glob",
+                                                        "headers"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "headers": {
+                                                            "items": {
+                                                                "additionalProperties": false,
+                                                                "properties": {
+                                                                    "key": {
+                                                                        "description": "The header key",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "value": {
+                                                                        "description": "The header value",
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "key",
+                                                                    "value"
+                                                                ],
+                                                                "type": "object"
+                                                            },
+                                                            "type": "array"
+                                                        },
+                                                        "source": {
+                                                            "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "headers",
+                                                        "source"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "headers": {
+                                                            "items": {
+                                                                "additionalProperties": false,
+                                                                "properties": {
+                                                                    "key": {
+                                                                        "description": "The header key",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "value": {
+                                                                        "description": "The header value",
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "key",
+                                                                    "value"
+                                                                ],
+                                                                "type": "object"
+                                                            },
+                                                            "type": "array"
+                                                        },
+                                                        "regex": {
+                                                            "description": "RE2 regular expression",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "headers",
+                                                        "regex"
+                                                    ],
+                                                    "type": "object"
+                                                }
+                                            ]
+                                        },
+                                        "type": "array"
+                                    },
+                                    "i18n": {
+                                        "additionalProperties": false,
+                                        "description": "Set up i18n rewrites",
+                                        "properties": {
+                                            "root": {
+                                                "description": "Directory that contains your \"i18n content\"",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "root"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "ignore": {
+                                        "description": "Specifies files to ignore on deploy",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "postdeploy": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "description": "Post-deploy lifecycle hook will only execute if pre-deploy and function deployment completed successfully."
+                                    },
+                                    "predeploy": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "description": "Pre-deploy lifecycle hook - commands in the string array are sequentially executed. If any one of them fails the function will not deploy and the postdeploy lifecycle hook will not run."
+                                    },
+                                    "public": {
+                                        "description": "The directory that gets uploaded to Firebase",
+                                        "type": "string"
+                                    },
+                                    "redirects": {
+                                        "description": "Specifies all http redirects",
+                                        "items": {
+                                            "anyOf": [
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "destination": {
+                                                            "description": "The value used within the Location header entry",
+                                                            "type": "string"
+                                                        },
+                                                        "glob": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "description": "The redirect status code\n301 | 302;",
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "destination",
+                                                        "glob"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "destination": {
+                                                            "description": "The value used within the Location header entry",
+                                                            "type": "string"
+                                                        },
+                                                        "source": {
+                                                            "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "description": "The redirect status code\n301 | 302;",
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "destination",
+                                                        "source"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "destination": {
+                                                            "description": "The value used within the Location header entry",
+                                                            "type": "string"
+                                                        },
+                                                        "regex": {
+                                                            "description": "RE2 regular expression",
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "description": "The redirect status code\n301 | 302;",
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "destination",
+                                                        "regex"
+                                                    ],
+                                                    "type": "object"
+                                                }
+                                            ]
+                                        },
+                                        "type": "array"
+                                    },
+                                    "rewrites": {
+                                        "description": "Holds rules for rewrites",
+                                        "items": {
+                                            "anyOf": [
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "destination": {
+                                                            "description": "A local destination",
+                                                            "type": "string"
+                                                        },
+                                                        "glob": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "destination",
+                                                        "glob"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "function": {
+                                                            "description": "Directs a request to Cloud Functions",
+                                                            "type": "string"
+                                                        },
+                                                        "glob": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "function",
+                                                        "glob"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "glob": {
+                                                            "type": "string"
+                                                        },
+                                                        "run": {
+                                                            "additionalProperties": false,
+                                                            "description": "Directs a request to a Cloud Run containerized app",
+                                                            "properties": {
+                                                                "region": {
+                                                                    "description": "optional (if omitted, default is us-central1)",
+                                                                    "type": "string"
+                                                                },
+                                                                "serviceId": {
+                                                                    "description": "\"service name\" (from when you deployed the container image)",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "serviceId"
+                                                            ],
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "glob",
+                                                        "run"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "dynamicLinks": {
+                                                            "description": "Enable Dynamic Links",
+                                                            "type": "boolean"
+                                                        },
+                                                        "glob": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "dynamicLinks",
+                                                        "glob"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "destination": {
+                                                            "description": "A local destination",
+                                                            "type": "string"
+                                                        },
+                                                        "source": {
+                                                            "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "destination",
+                                                        "source"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "function": {
+                                                            "description": "Directs a request to Cloud Functions",
+                                                            "type": "string"
+                                                        },
+                                                        "source": {
+                                                            "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "function",
+                                                        "source"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "run": {
+                                                            "additionalProperties": false,
+                                                            "description": "Directs a request to a Cloud Run containerized app",
+                                                            "properties": {
+                                                                "region": {
+                                                                    "description": "optional (if omitted, default is us-central1)",
+                                                                    "type": "string"
+                                                                },
+                                                                "serviceId": {
+                                                                    "description": "\"service name\" (from when you deployed the container image)",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "serviceId"
+                                                            ],
+                                                            "type": "object"
+                                                        },
+                                                        "source": {
+                                                            "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "run",
+                                                        "source"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "dynamicLinks": {
+                                                            "description": "Enable Dynamic Links",
+                                                            "type": "boolean"
+                                                        },
+                                                        "source": {
+                                                            "description": "A glob pattern that is matched against all URL paths at the start of every request\n\nA glob specifying a rewrite rule\n\nMatched against the original request path, regardless of rewrite rules",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "dynamicLinks",
+                                                        "source"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "destination": {
+                                                            "description": "A local destination",
+                                                            "type": "string"
+                                                        },
+                                                        "regex": {
+                                                            "description": "RE2 regular expression",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "destination",
+                                                        "regex"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "function": {
+                                                            "description": "Directs a request to Cloud Functions",
+                                                            "type": "string"
+                                                        },
+                                                        "regex": {
+                                                            "description": "RE2 regular expression",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "function",
+                                                        "regex"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "regex": {
+                                                            "description": "RE2 regular expression",
+                                                            "type": "string"
+                                                        },
+                                                        "run": {
+                                                            "additionalProperties": false,
+                                                            "description": "Directs a request to a Cloud Run containerized app",
+                                                            "properties": {
+                                                                "region": {
+                                                                    "description": "optional (if omitted, default is us-central1)",
+                                                                    "type": "string"
+                                                                },
+                                                                "serviceId": {
+                                                                    "description": "\"service name\" (from when you deployed the container image)",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "serviceId"
+                                                            ],
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "regex",
+                                                        "run"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "dynamicLinks": {
+                                                            "description": "Enable Dynamic Links",
+                                                            "type": "boolean"
+                                                        },
+                                                        "regex": {
+                                                            "description": "RE2 regular expression",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "dynamicLinks",
+                                                        "regex"
+                                                    ],
+                                                    "type": "object"
+                                                }
+                                            ]
+                                        },
+                                        "type": "array"
+                                    },
+                                    "site": {
+                                        "type": "string"
+                                    },
+                                    "target": {
+                                        "type": "string"
+                                    },
+                                    "trailingSlash": {
+                                        "description": "Controls whether URLs should have trailing slashes or not",
+                                        "type": "boolean"
+                                    }
+                                },
+                                "required": [
+                                    "site"
+                                ],
+                                "type": "object"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                }
+            ],
+            "description": "Holds the main configuration entries"
         },
-        "hub": {
-          "additionalProperties": false,
-          "properties": {
-            "host": {
-              "type": "string"
+        "remoteconfig": {
+            "additionalProperties": false,
+            "description": "Change the behavior and appearance of your app without publishing an app update",
+            "properties": {
+                "postdeploy": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Post-deploy lifecycle hook will only execute if pre-deploy and function deployment completed successfully."
+                },
+                "predeploy": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Pre-deploy lifecycle hook - commands in the string array are sequentially executed. If any one of them fails the function will not deploy and the postdeploy lifecycle hook will not run."
+                },
+                "template": {
+                    "description": "Template file",
+                    "type": "string"
+                }
             },
-            "port": {
-              "type": "number"
-            }
-          },
-          "type": "object"
-        },
-        "logging": {
-          "additionalProperties": false,
-          "properties": {
-            "host": {
-              "type": "string"
-            },
-            "port": {
-              "type": "number"
-            }
-          },
-          "type": "object"
-        },
-        "pubsub": {
-          "additionalProperties": false,
-          "properties": {
-            "host": {
-              "type": "string"
-            },
-            "port": {
-              "type": "number"
-            }
-          },
-          "type": "object"
+            "required": [
+                "template"
+            ],
+            "type": "object"
         },
         "storage": {
-          "additionalProperties": false,
-          "properties": {
-            "host": {
-              "type": "string"
-            },
-            "port": {
-              "type": "number"
-            }
-          },
-          "type": "object"
-        },
-        "ui": {
-          "additionalProperties": false,
-          "properties": {
-            "enabled": {
-              "type": "boolean"
-            },
-            "host": {
-              "type": "string"
-            },
-            "port": {
-              "type": ["string", "number"]
-            }
-          },
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "extensions": {
-      "$ref": "#/definitions/ExtensionsConfig"
-    },
-    "firestore": {
-      "additionalProperties": false,
-      "properties": {
-        "indexes": {
-          "type": "string"
-        },
-        "postdeploy": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "string"
-            }
-          ]
-        },
-        "predeploy": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "string"
-            }
-          ]
-        },
-        "rules": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "functions": {
-      "additionalProperties": false,
-      "properties": {
-        "ignore": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "postdeploy": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "string"
-            }
-          ]
-        },
-        "predeploy": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "string"
-            }
-          ]
-        },
-        "runtime": {
-          "enum": ["nodejs10", "nodejs12", "nodejs14", "nodejs16"],
-          "type": "string"
-        },
-        "source": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "hosting": {
-      "anyOf": [
-        {
-          "additionalProperties": false,
-          "properties": {
-            "appAssociation": {
-              "type": "string"
-            },
-            "cleanUrls": {
-              "type": "boolean"
-            },
-            "headers": {
-              "items": {
-                "anyOf": [
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "glob": {
-                        "type": "string"
-                      },
-                      "headers": {
-                        "items": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "key": {
-                              "type": "string"
-                            },
-                            "value": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["key", "value"],
-                          "type": "object"
-                        },
-                        "type": "array"
-                      }
-                    },
-                    "required": ["glob", "headers"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "headers": {
-                        "items": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "key": {
-                              "type": "string"
-                            },
-                            "value": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["key", "value"],
-                          "type": "object"
-                        },
-                        "type": "array"
-                      },
-                      "source": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["headers", "source"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "headers": {
-                        "items": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "key": {
-                              "type": "string"
-                            },
-                            "value": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["key", "value"],
-                          "type": "object"
-                        },
-                        "type": "array"
-                      },
-                      "regex": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["headers", "regex"],
-                    "type": "object"
-                  }
-                ]
-              },
-              "type": "array"
-            },
-            "i18n": {
-              "additionalProperties": false,
-              "properties": {
-                "root": {
-                  "type": "string"
-                }
-              },
-              "required": ["root"],
-              "type": "object"
-            },
-            "ignore": {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "postdeploy": {
-              "anyOf": [
-                {
-                  "items": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                },
-                {
-                  "type": "string"
-                }
-              ]
-            },
-            "predeploy": {
-              "anyOf": [
-                {
-                  "items": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                },
-                {
-                  "type": "string"
-                }
-              ]
-            },
-            "public": {
-              "type": "string"
-            },
-            "redirects": {
-              "items": {
-                "anyOf": [
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "destination": {
-                        "type": "string"
-                      },
-                      "glob": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "number"
-                      }
-                    },
-                    "required": ["destination", "glob"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "destination": {
-                        "type": "string"
-                      },
-                      "source": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "number"
-                      }
-                    },
-                    "required": ["destination", "source"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "destination": {
-                        "type": "string"
-                      },
-                      "regex": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "number"
-                      }
-                    },
-                    "required": ["destination", "regex"],
-                    "type": "object"
-                  }
-                ]
-              },
-              "type": "array"
-            },
-            "rewrites": {
-              "items": {
-                "anyOf": [
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "destination": {
-                        "type": "string"
-                      },
-                      "glob": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["destination", "glob"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "function": {
-                        "type": "string"
-                      },
-                      "glob": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["function", "glob"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "glob": {
-                        "type": "string"
-                      },
-                      "run": {
-                        "additionalProperties": false,
-                        "properties": {
-                          "region": {
-                            "type": "string"
-                          },
-                          "serviceId": {
-                            "type": "string"
-                          }
-                        },
-                        "required": ["serviceId"],
-                        "type": "object"
-                      }
-                    },
-                    "required": ["glob", "run"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "dynamicLinks": {
-                        "type": "boolean"
-                      },
-                      "glob": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["dynamicLinks", "glob"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "destination": {
-                        "type": "string"
-                      },
-                      "source": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["destination", "source"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "function": {
-                        "type": "string"
-                      },
-                      "source": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["function", "source"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "run": {
-                        "additionalProperties": false,
-                        "properties": {
-                          "region": {
-                            "type": "string"
-                          },
-                          "serviceId": {
-                            "type": "string"
-                          }
-                        },
-                        "required": ["serviceId"],
-                        "type": "object"
-                      },
-                      "source": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["run", "source"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "dynamicLinks": {
-                        "type": "boolean"
-                      },
-                      "source": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["dynamicLinks", "source"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "destination": {
-                        "type": "string"
-                      },
-                      "regex": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["destination", "regex"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "function": {
-                        "type": "string"
-                      },
-                      "regex": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["function", "regex"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "regex": {
-                        "type": "string"
-                      },
-                      "run": {
-                        "additionalProperties": false,
-                        "properties": {
-                          "region": {
-                            "type": "string"
-                          },
-                          "serviceId": {
-                            "type": "string"
-                          }
-                        },
-                        "required": ["serviceId"],
-                        "type": "object"
-                      }
-                    },
-                    "required": ["regex", "run"],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "dynamicLinks": {
-                        "type": "boolean"
-                      },
-                      "regex": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["dynamicLinks", "regex"],
-                    "type": "object"
-                  }
-                ]
-              },
-              "type": "array"
-            },
-            "site": {
-              "type": "string"
-            },
-            "target": {
-              "type": "string"
-            },
-            "trailingSlash": {
-              "type": "boolean"
-            }
-          },
-          "type": "object"
-        },
-        {
-          "items": {
             "anyOf": [
-              {
-                "additionalProperties": false,
-                "properties": {
-                  "appAssociation": {
-                    "type": "string"
-                  },
-                  "cleanUrls": {
-                    "type": "boolean"
-                  },
-                  "headers": {
-                    "items": {
-                      "anyOf": [
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "glob": {
-                              "type": "string"
-                            },
-                            "headers": {
-                              "items": {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "key": {
-                                    "type": "string"
-                                  },
-                                  "value": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": ["key", "value"],
-                                "type": "object"
-                              },
-                              "type": "array"
-                            }
-                          },
-                          "required": ["glob", "headers"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "headers": {
-                              "items": {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "key": {
-                                    "type": "string"
-                                  },
-                                  "value": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": ["key", "value"],
-                                "type": "object"
-                              },
-                              "type": "array"
-                            },
-                            "source": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["headers", "source"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "headers": {
-                              "items": {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "key": {
-                                    "type": "string"
-                                  },
-                                  "value": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": ["key", "value"],
-                                "type": "object"
-                              },
-                              "type": "array"
-                            },
-                            "regex": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["headers", "regex"],
-                          "type": "object"
-                        }
-                      ]
-                    },
-                    "type": "array"
-                  },
-                  "i18n": {
+                {
                     "additionalProperties": false,
                     "properties": {
-                      "root": {
-                        "type": "string"
-                      }
+                        "postdeploy": {
+                            "anyOf": [
+                                {
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ],
+                            "description": "Post-deploy lifecycle hook will only execute if pre-deploy and function deployment completed successfully."
+                        },
+                        "predeploy": {
+                            "anyOf": [
+                                {
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ],
+                            "description": "Pre-deploy lifecycle hook - commands in the string array are sequentially executed. If any one of them fails the function will not deploy and the postdeploy lifecycle hook will not run."
+                        },
+                        "rules": {
+                            "description": "Points to the file that contains security rules for storage buckets",
+                            "type": "string"
+                        },
+                        "target": {
+                            "description": "Define a resource target to which you apply your storage security rules file",
+                            "type": "string"
+                        }
                     },
-                    "required": ["root"],
+                    "required": [
+                        "rules"
+                    ],
                     "type": "object"
-                  },
-                  "ignore": {
-                    "items": {
-                      "type": "string"
-                    },
-                    "type": "array"
-                  },
-                  "postdeploy": {
-                    "anyOf": [
-                      {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
-                      {
-                        "type": "string"
-                      }
-                    ]
-                  },
-                  "predeploy": {
-                    "anyOf": [
-                      {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
-                      {
-                        "type": "string"
-                      }
-                    ]
-                  },
-                  "public": {
-                    "type": "string"
-                  },
-                  "redirects": {
-                    "items": {
-                      "anyOf": [
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "destination": {
-                              "type": "string"
-                            },
-                            "glob": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "number"
-                            }
-                          },
-                          "required": ["destination", "glob"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "destination": {
-                              "type": "string"
-                            },
-                            "source": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "number"
-                            }
-                          },
-                          "required": ["destination", "source"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "destination": {
-                              "type": "string"
-                            },
-                            "regex": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "number"
-                            }
-                          },
-                          "required": ["destination", "regex"],
-                          "type": "object"
-                        }
-                      ]
-                    },
-                    "type": "array"
-                  },
-                  "rewrites": {
-                    "items": {
-                      "anyOf": [
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "destination": {
-                              "type": "string"
-                            },
-                            "glob": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["destination", "glob"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "function": {
-                              "type": "string"
-                            },
-                            "glob": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["function", "glob"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "glob": {
-                              "type": "string"
-                            },
-                            "run": {
-                              "additionalProperties": false,
-                              "properties": {
-                                "region": {
-                                  "type": "string"
-                                },
-                                "serviceId": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": ["serviceId"],
-                              "type": "object"
-                            }
-                          },
-                          "required": ["glob", "run"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "dynamicLinks": {
-                              "type": "boolean"
-                            },
-                            "glob": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["dynamicLinks", "glob"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "destination": {
-                              "type": "string"
-                            },
-                            "source": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["destination", "source"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "function": {
-                              "type": "string"
-                            },
-                            "source": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["function", "source"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "run": {
-                              "additionalProperties": false,
-                              "properties": {
-                                "region": {
-                                  "type": "string"
-                                },
-                                "serviceId": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": ["serviceId"],
-                              "type": "object"
-                            },
-                            "source": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["run", "source"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "dynamicLinks": {
-                              "type": "boolean"
-                            },
-                            "source": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["dynamicLinks", "source"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "destination": {
-                              "type": "string"
-                            },
-                            "regex": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["destination", "regex"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "function": {
-                              "type": "string"
-                            },
-                            "regex": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["function", "regex"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "regex": {
-                              "type": "string"
-                            },
-                            "run": {
-                              "additionalProperties": false,
-                              "properties": {
-                                "region": {
-                                  "type": "string"
-                                },
-                                "serviceId": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": ["serviceId"],
-                              "type": "object"
-                            }
-                          },
-                          "required": ["regex", "run"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "dynamicLinks": {
-                              "type": "boolean"
-                            },
-                            "regex": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["dynamicLinks", "regex"],
-                          "type": "object"
-                        }
-                      ]
-                    },
-                    "type": "array"
-                  },
-                  "site": {
-                    "type": "string"
-                  },
-                  "target": {
-                    "type": "string"
-                  },
-                  "trailingSlash": {
-                    "type": "boolean"
-                  }
-                },
-                "required": ["target"],
-                "type": "object"
-              },
-              {
-                "additionalProperties": false,
-                "properties": {
-                  "appAssociation": {
-                    "type": "string"
-                  },
-                  "cleanUrls": {
-                    "type": "boolean"
-                  },
-                  "headers": {
-                    "items": {
-                      "anyOf": [
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "glob": {
-                              "type": "string"
-                            },
-                            "headers": {
-                              "items": {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "key": {
-                                    "type": "string"
-                                  },
-                                  "value": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": ["key", "value"],
-                                "type": "object"
-                              },
-                              "type": "array"
-                            }
-                          },
-                          "required": ["glob", "headers"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "headers": {
-                              "items": {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "key": {
-                                    "type": "string"
-                                  },
-                                  "value": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": ["key", "value"],
-                                "type": "object"
-                              },
-                              "type": "array"
-                            },
-                            "source": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["headers", "source"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "headers": {
-                              "items": {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "key": {
-                                    "type": "string"
-                                  },
-                                  "value": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": ["key", "value"],
-                                "type": "object"
-                              },
-                              "type": "array"
-                            },
-                            "regex": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["headers", "regex"],
-                          "type": "object"
-                        }
-                      ]
-                    },
-                    "type": "array"
-                  },
-                  "i18n": {
-                    "additionalProperties": false,
-                    "properties": {
-                      "root": {
-                        "type": "string"
-                      }
-                    },
-                    "required": ["root"],
-                    "type": "object"
-                  },
-                  "ignore": {
-                    "items": {
-                      "type": "string"
-                    },
-                    "type": "array"
-                  },
-                  "postdeploy": {
-                    "anyOf": [
-                      {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
-                      {
-                        "type": "string"
-                      }
-                    ]
-                  },
-                  "predeploy": {
-                    "anyOf": [
-                      {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
-                      {
-                        "type": "string"
-                      }
-                    ]
-                  },
-                  "public": {
-                    "type": "string"
-                  },
-                  "redirects": {
-                    "items": {
-                      "anyOf": [
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "destination": {
-                              "type": "string"
-                            },
-                            "glob": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "number"
-                            }
-                          },
-                          "required": ["destination", "glob"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "destination": {
-                              "type": "string"
-                            },
-                            "source": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "number"
-                            }
-                          },
-                          "required": ["destination", "source"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "destination": {
-                              "type": "string"
-                            },
-                            "regex": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "number"
-                            }
-                          },
-                          "required": ["destination", "regex"],
-                          "type": "object"
-                        }
-                      ]
-                    },
-                    "type": "array"
-                  },
-                  "rewrites": {
-                    "items": {
-                      "anyOf": [
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "destination": {
-                              "type": "string"
-                            },
-                            "glob": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["destination", "glob"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "function": {
-                              "type": "string"
-                            },
-                            "glob": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["function", "glob"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "glob": {
-                              "type": "string"
-                            },
-                            "run": {
-                              "additionalProperties": false,
-                              "properties": {
-                                "region": {
-                                  "type": "string"
-                                },
-                                "serviceId": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": ["serviceId"],
-                              "type": "object"
-                            }
-                          },
-                          "required": ["glob", "run"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "dynamicLinks": {
-                              "type": "boolean"
-                            },
-                            "glob": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["dynamicLinks", "glob"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "destination": {
-                              "type": "string"
-                            },
-                            "source": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["destination", "source"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "function": {
-                              "type": "string"
-                            },
-                            "source": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["function", "source"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "run": {
-                              "additionalProperties": false,
-                              "properties": {
-                                "region": {
-                                  "type": "string"
-                                },
-                                "serviceId": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": ["serviceId"],
-                              "type": "object"
-                            },
-                            "source": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["run", "source"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "dynamicLinks": {
-                              "type": "boolean"
-                            },
-                            "source": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["dynamicLinks", "source"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "destination": {
-                              "type": "string"
-                            },
-                            "regex": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["destination", "regex"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "function": {
-                              "type": "string"
-                            },
-                            "regex": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["function", "regex"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "regex": {
-                              "type": "string"
-                            },
-                            "run": {
-                              "additionalProperties": false,
-                              "properties": {
-                                "region": {
-                                  "type": "string"
-                                },
-                                "serviceId": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": ["serviceId"],
-                              "type": "object"
-                            }
-                          },
-                          "required": ["regex", "run"],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "dynamicLinks": {
-                              "type": "boolean"
-                            },
-                            "regex": {
-                              "type": "string"
-                            }
-                          },
-                          "required": ["dynamicLinks", "regex"],
-                          "type": "object"
-                        }
-                      ]
-                    },
-                    "type": "array"
-                  },
-                  "site": {
-                    "type": "string"
-                  },
-                  "target": {
-                    "type": "string"
-                  },
-                  "trailingSlash": {
-                    "type": "boolean"
-                  }
-                },
-                "required": ["site"],
-                "type": "object"
-              }
-            ]
-          },
-          "type": "array"
-        }
-      ]
-    },
-    "remoteconfig": {
-      "additionalProperties": false,
-      "properties": {
-        "postdeploy": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "string"
-            }
-          ]
-        },
-        "predeploy": {
-          "anyOf": [
-            {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "string"
-            }
-          ]
-        },
-        "template": {
-          "type": "string"
-        }
-      },
-      "required": ["template"],
-      "type": "object"
-    },
-    "storage": {
-      "anyOf": [
-        {
-          "additionalProperties": false,
-          "properties": {
-            "postdeploy": {
-              "anyOf": [
-                {
-                  "items": {
-                    "type": "string"
-                  },
-                  "type": "array"
                 },
                 {
-                  "type": "string"
+                    "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "bucket": {
+                                "type": "string"
+                            },
+                            "postdeploy": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ],
+                                "description": "Post-deploy lifecycle hook will only execute if pre-deploy and function deployment completed successfully."
+                            },
+                            "predeploy": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ],
+                                "description": "Pre-deploy lifecycle hook - commands in the string array are sequentially executed. If any one of them fails the function will not deploy and the postdeploy lifecycle hook will not run."
+                            },
+                            "rules": {
+                                "type": "string"
+                            },
+                            "target": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "bucket",
+                            "rules"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
                 }
-              ]
-            },
-            "predeploy": {
-              "anyOf": [
-                {
-                  "items": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                },
-                {
-                  "type": "string"
-                }
-              ]
-            },
-            "rules": {
-              "type": "string"
-            },
-            "target": {
-              "type": "string"
-            }
-          },
-          "required": ["rules"],
-          "type": "object"
-        },
-        {
-          "items": {
-            "additionalProperties": false,
-            "properties": {
-              "bucket": {
-                "type": "string"
-              },
-              "postdeploy": {
-                "anyOf": [
-                  {
-                    "items": {
-                      "type": "string"
-                    },
-                    "type": "array"
-                  },
-                  {
-                    "type": "string"
-                  }
-                ]
-              },
-              "predeploy": {
-                "anyOf": [
-                  {
-                    "items": {
-                      "type": "string"
-                    },
-                    "type": "array"
-                  },
-                  {
-                    "type": "string"
-                  }
-                ]
-              },
-              "rules": {
-                "type": "string"
-              },
-              "target": {
-                "type": "string"
-              }
-            },
-            "required": ["bucket", "rules"],
-            "type": "object"
-          },
-          "type": "array"
+            ],
+            "description": "Either define shared security rules which will apply to all of your storage buckets or define multiple targets each with its own unique file that contains the security rules for the corresponding storage bucket."
         }
-      ]
-    }
-  },
-  "type": "object"
+    },
+    "type": "object"
 }
+
