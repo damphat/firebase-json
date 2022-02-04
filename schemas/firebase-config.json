@@ -399,7 +399,7 @@
                     "additionalProperties": false,
                     "properties": {
                         "appAssociation": {
-                            "description": "the default for appAssociation is AUTO.\nBy setting this attribute to AUTO, Hosting can dynamically generate assetlinks.json and apple-app-site-association files when they're requested.",
+                            "description": "The default for appAssociation is AUTO.\nBy setting this attribute to AUTO, hosting can dynamically generate assetlinks.json and apple-app-site-association files when they're requested.",
                             "type": "string"
                         },
                         "cleanUrls": {
@@ -568,7 +568,7 @@
                             "description": "Pre-deploy lifecycle hook - commands in the string array are sequentially executed. If any one of them fails the function will not deploy and the postdeploy lifecycle hook will not run."
                         },
                         "public": {
-                            "description": "The directory that gets uploaded to Firebase",
+                            "description": "The directory that gets uploaded to firebase",
                             "type": "string"
                         },
                         "redirects": {
@@ -669,7 +669,7 @@
                                         "additionalProperties": false,
                                         "properties": {
                                             "function": {
-                                                "description": "Directs a request to Cloud Functions",
+                                                "description": "Directs a request to a http cloud function\n(limitation: only support functions on us-central1 region)",
                                                 "type": "string"
                                             },
                                             "glob": {
@@ -752,7 +752,7 @@
                                         "additionalProperties": false,
                                         "properties": {
                                             "function": {
-                                                "description": "Directs a request to Cloud Functions",
+                                                "description": "Directs a request to a http cloud function\n(limitation: only support functions on us-central1 region)",
                                                 "type": "string"
                                             },
                                             "source": {
@@ -838,7 +838,7 @@
                                         "additionalProperties": false,
                                         "properties": {
                                             "function": {
-                                                "description": "Directs a request to Cloud Functions",
+                                                "description": "Directs a request to a http cloud function\n(limitation: only support functions on us-central1 region)",
                                                 "type": "string"
                                             },
                                             "regex": {
@@ -927,7 +927,7 @@
                                 "additionalProperties": false,
                                 "properties": {
                                     "appAssociation": {
-                                        "description": "the default for appAssociation is AUTO.\nBy setting this attribute to AUTO, Hosting can dynamically generate assetlinks.json and apple-app-site-association files when they're requested.",
+                                        "description": "The default for appAssociation is AUTO.\nBy setting this attribute to AUTO, hosting can dynamically generate assetlinks.json and apple-app-site-association files when they're requested.",
                                         "type": "string"
                                     },
                                     "cleanUrls": {
@@ -1096,7 +1096,7 @@
                                         "description": "Pre-deploy lifecycle hook - commands in the string array are sequentially executed. If any one of them fails the function will not deploy and the postdeploy lifecycle hook will not run."
                                     },
                                     "public": {
-                                        "description": "The directory that gets uploaded to Firebase",
+                                        "description": "The directory that gets uploaded to firebase",
                                         "type": "string"
                                     },
                                     "redirects": {
@@ -1197,7 +1197,7 @@
                                                     "additionalProperties": false,
                                                     "properties": {
                                                         "function": {
-                                                            "description": "Directs a request to Cloud Functions",
+                                                            "description": "Directs a request to a http cloud function\n(limitation: only support functions on us-central1 region)",
                                                             "type": "string"
                                                         },
                                                         "glob": {
@@ -1280,7 +1280,7 @@
                                                     "additionalProperties": false,
                                                     "properties": {
                                                         "function": {
-                                                            "description": "Directs a request to Cloud Functions",
+                                                            "description": "Directs a request to a http cloud function\n(limitation: only support functions on us-central1 region)",
                                                             "type": "string"
                                                         },
                                                         "source": {
@@ -1366,7 +1366,7 @@
                                                     "additionalProperties": false,
                                                     "properties": {
                                                         "function": {
-                                                            "description": "Directs a request to Cloud Functions",
+                                                            "description": "Directs a request to a http cloud function\n(limitation: only support functions on us-central1 region)",
                                                             "type": "string"
                                                         },
                                                         "regex": {
@@ -1454,7 +1454,7 @@
                                 "additionalProperties": false,
                                 "properties": {
                                     "appAssociation": {
-                                        "description": "the default for appAssociation is AUTO.\nBy setting this attribute to AUTO, Hosting can dynamically generate assetlinks.json and apple-app-site-association files when they're requested.",
+                                        "description": "The default for appAssociation is AUTO.\nBy setting this attribute to AUTO, hosting can dynamically generate assetlinks.json and apple-app-site-association files when they're requested.",
                                         "type": "string"
                                     },
                                     "cleanUrls": {
@@ -1623,7 +1623,7 @@
                                         "description": "Pre-deploy lifecycle hook - commands in the string array are sequentially executed. If any one of them fails the function will not deploy and the postdeploy lifecycle hook will not run."
                                     },
                                     "public": {
-                                        "description": "The directory that gets uploaded to Firebase",
+                                        "description": "The directory that gets uploaded to firebase",
                                         "type": "string"
                                     },
                                     "redirects": {
@@ -1724,7 +1724,7 @@
                                                     "additionalProperties": false,
                                                     "properties": {
                                                         "function": {
-                                                            "description": "Directs a request to Cloud Functions",
+                                                            "description": "Directs a request to a http cloud function\n(limitation: only support functions on us-central1 region)",
                                                             "type": "string"
                                                         },
                                                         "glob": {
@@ -1807,7 +1807,7 @@
                                                     "additionalProperties": false,
                                                     "properties": {
                                                         "function": {
-                                                            "description": "Directs a request to Cloud Functions",
+                                                            "description": "Directs a request to a http cloud function\n(limitation: only support functions on us-central1 region)",
                                                             "type": "string"
                                                         },
                                                         "source": {
@@ -1893,7 +1893,7 @@
                                                     "additionalProperties": false,
                                                     "properties": {
                                                         "function": {
-                                                            "description": "Directs a request to Cloud Functions",
+                                                            "description": "Directs a request to a http cloud function\n(limitation: only support functions on us-central1 region)",
                                                             "type": "string"
                                                         },
                                                         "regex": {
