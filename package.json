@@ -1,6 +1,6 @@
 {
   "name": "firebase-json",
-  "displayName": "Firebase configuration autocompleted",
+  "displayName": "Firebase Configuration Schema",
   "description": "Adds json schema for firebase.json files, enabling auto completion and suggestion",
   "version": "1.1.0",
   "repository": {
