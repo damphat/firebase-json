@@ -126,6 +126,9 @@ type HostingBase = {
    * The directory that gets uploaded to firebase
    */
   public?: string;
+
+  source?: string;
+
   /**
    * Specifies files to ignore on deploy
    */
@@ -217,15 +220,17 @@ export type FirestoreConfig = {
   indexes?: string;
 } & Deployable;
 
-export type FunctionsConfig = {
+export type FunctionConfig = {
   /**
    * Point to the functions folder, default to "functions"
    */
   source?: string;
   ignore?: string[];
-
   runtime?: CloudFunctionRuntimes;
+  codebase?: string;
 } & Deployable;
+
+export type FunctionsConfig = FunctionConfig | FunctionConfig[];
 
 export type HostingConfig = HostingSingle | HostingMultiple;
 
@@ -283,6 +288,7 @@ export type EmulatorsConfig = {
     host?: string;
     port?: number | string;
   };
+  extensions?: {};
 };
 
 export type ExtensionsConfig = Record<string, string>;
