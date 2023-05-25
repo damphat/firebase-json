@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.3.0] - 2023-05-25
+
+- Update to the newest schema from firebase tools
+
+
 ## [1.2.0] - 2022-08-05
 
 - Update to the newest schema from firebase tools
